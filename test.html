@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Formulário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-prev { background: #ccc; }
+        .btn-next { background: #007bff; color: white; }
+        .btn-submit { background: #28a745; color: white; }
+        .step-info {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Teste do Formulário</h1>
+        
+        <div class="step-info">
+            <p>Etapa atual: <span id="currentStepDisplay">1</span> de 8</p>
+            <p>Progresso: <span id="progressDisplay">12.5%</span></p>
+        </div>
+        
+        <div class="navigation">
+            <button type="button" class="btn btn-prev" id="prevBtn" onclick="previousStep()">
+                ← Anterior
+            </button>
+            <button type="button" class="btn btn-next" id="nextBtn" onclick="nextStep()">
+                Próximo →
+            </button>
+            <button type="button" class="btn btn-submit" id="submitBtn" onclick="submitForm()" style="display: none;">
+                Finalizar ✓
+            </button>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <button onclick="testNavigation()">Testar Navegação</button>
+            <button onclick="goToStep(8)">Ir para Etapa 8</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 8;
+        
+        function updateDisplay() {
+            document.getElementById('currentStepDisplay').textContent = currentStep;
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressDisplay').textContent = progress.toFixed(1) + '%';
+            updateNavigation();
+        }
+        
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+            
+            if (currentStep === totalSteps) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+        }
+        
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateDisplay();
+            }
+        }
+        
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateDisplay();
+            }
+        }
+        
+        function goToStep(step) {
+            currentStep = step;
+            updateDisplay();
+        }
+        
+        function submitForm() {
+            alert('Formulário enviado!');
+        }
+        
+        function testNavigation() {
+            alert('Testando navegação...\nEtapa atual: ' + currentStep + '\nBotão Anterior: ' + (currentStep > 1 ? 'Visível' : 'Oculto') + '\nBotão Próximo: ' + (currentStep < totalSteps ? 'Visível' : 'Oculto') + '\nBotão Finalizar: ' + (currentStep === totalSteps ? 'Visível' : 'Oculto'));
+        }
+        
+        // Inicializar
+        updateDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Diagnóstico Inteligente - Lume Açaí</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Efeito de bolhas flutuantes -->
+    <div class="acai-bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            
+            <h1><img src="img/açai.png" alt="açai">Diagnóstico Inteligente</h1>
+            <p>Lume Açaí - João XXIII</p>
+            <p>Menos de 5 minutos para uma solução sob medida 🚀</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="step-counter" id="stepCounter">
+            Etapa 1 de 8
+        </div>
+
+        <form id="diagnosticForm">
+            <!-- Pergunta 1: Canais de Venda -->
+            <!-- Exemplo para a primeira questão (repita o padrão para todas) -->
+            <div class="question active" data-step="1">
+                <h3>
+                    <div class="question-icon">📱</div>
+                    Quais canais de venda você usa hoje?
+                </h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="canal_balcao" name="canais_venda" value="balcao">
+                        <label for="canal_balcao">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-store"></i>&nbsp;&nbsp;Balcão/Presencial
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="canal_whatsapp" name="canais_venda" value="whatsapp">
+                        <label for="canal_whatsapp">
+                            <div class="custom-checkbox"></div>
+                            <i class="fab fa-whatsapp"></i>&nbsp;&nbsp;WhatsApp
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="canal_ifood" name="canais_venda" value="ifood">
+                        <label for="canal_ifood">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-utensils"></i>&nbsp;&nbsp;iFood
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="canal_instagram" name="canais_venda" value="instagram">
+                        <label for="canal_instagram">
+                            <div class="custom-checkbox"></div>
+                            <i class="fab fa-instagram"></i>&nbsp;&nbsp;Instagram
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="canal_telefone" name="canais_venda" value="telefone">
+                        <label for="canal_telefone">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-phone"></i>&nbsp;&nbsp;Telefone
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="canal_outros" name="canais_venda" value="outros">
+                        <label for="canal_outros">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Outros
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step1">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step1" name="observacao_canais" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Pergunta 2: Organização WhatsApp -->
+            <div class="question" data-step="2">
+                <h3>
+                    <div class="question-icon">📝</div>
+                    Como você organiza os pedidos do WhatsApp atualmente?
+                </h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="org_caderno" name="organizacao_whatsapp" value="caderno">
+                        <label for="org_caderno">
+                            <div class="custom-radio"></div>
+                            <i class="fas fa-book"></i>&nbsp;&nbsp;Caderno/Anotações
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="org_planilha" name="organizacao_whatsapp" value="planilha">
+                        <label for="org_planilha">
+                            <div class="custom-radio"></div>
+                            <i class="fas fa-table"></i>&nbsp;&nbsp;Planilha
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="org_cabeca" name="organizacao_whatsapp" value="cabeca">
+                        <label for="org_cabeca">
+                            <div class="custom-radio"></div>
+                            <i class="fas fa-brain"></i>&nbsp;&nbsp;De cabeça/memória
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="org_sistema" name="organizacao_whatsapp" value="sistema">
+                        <label for="org_sistema">
+                            <div class="custom-radio"></div>
+                            <i class="fas fa-desktop"></i>&nbsp;&nbsp;Sistema/App
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="org_outro" name="organizacao_whatsapp" value="outro">
+                        <label for="org_outro">
+                            <div class="custom-radio"></div>
+                            <i class="fas fa-question-circle"></i>&nbsp;&nbsp;Outro método
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step2">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step2" name="observacao_whatsapp" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Pergunta 3: Desafios na Cozinha -->
+            <div class="question" data-step="3">
+                <h3>
+                    <div class="question-icon">👩‍🍳</div>
+                    Quais são os maiores desafios na cozinha/produção?
+                </h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="desafio_esquece" name="desafios_cozinha" value="esquecer_itens">
+                        <label for="desafio_esquece">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;Esquecer itens do pedido
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="desafio_demora" name="desafios_cozinha" value="demora_fila">
+                        <label for="desafio_demora">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-clock"></i>&nbsp;&nbsp;Demora na fila de pedidos
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="desafio_organizacao" name="desafios_cozinha" value="falta_organizacao">
+                        <label for="desafio_organizacao">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-random"></i>&nbsp;&nbsp;Falta de organização na ordem
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="desafio_comunicacao" name="desafios_cozinha" value="comunicacao">
+                        <label for="desafio_comunicacao">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-comments"></i>&nbsp;&nbsp;Comunicação entre equipe
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="desafio_ingredientes" name="desafios_cozinha" value="falta_ingredientes">
+                        <label for="desafio_ingredientes">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-shopping-basket"></i>&nbsp;&nbsp;Falta de ingredientes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="desafio_tempo" name="desafios_cozinha" value="tempo_preparo">
+                        <label for="desafio_tempo">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-stopwatch"></i>&nbsp;&nbsp;Controle do tempo de preparo
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step3">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step3" name="observacao_cozinha" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Pergunta 4: Delivery e Logística -->
+            <div class="question" data-step="4">
+                <h3>
+                    <div class="question-icon">🛵</div>
+                    Como funciona a logística de entregas hoje?
+                </h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="delivery_proprio" name="tipo_delivery" value="motoboy_proprio">
+                        <label for="delivery_proprio">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-user-check"></i>&nbsp;&nbsp;1 motoboy próprio fixo
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="delivery_multiplos" name="tipo_delivery" value="multiplos_motoboys">
+                        <label for="delivery_multiplos">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-users"></i>&nbsp;&nbsp;Vários motoboys próprios
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="delivery_terceiros" name="tipo_delivery" value="terceiros">
+                        <label for="delivery_terceiros">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-handshake"></i>&nbsp;&nbsp;Terceirizados quando preciso
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="delivery_ifood" name="tipo_delivery" value="ifood_entrega">
+                        <label for="delivery_ifood">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-utensils"></i>&nbsp;&nbsp;iFood Entrega
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="delivery_nao" name="tipo_delivery" value="nao_faco">
+                        <label for="delivery_nao">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-times-circle"></i>&nbsp;&nbsp;Não faço entrega própria
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step4">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step4" name="observacao_delivery" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Pergunta 5: Controle e Relatórios -->
+            <div class="question" data-step="5">
+                <h3>
+                    <div class="question-icon">📊</div>
+                    Que tipo de controle/relatórios você gostaria de ter?
+                </h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="relatorio_vendas" name="relatorios_desejados" value="vendas_diarias">
+                        <label for="relatorio_vendas">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-chart-line"></i>&nbsp;&nbsp;Vendas diárias/semanais/mensais
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="relatorio_produtos" name="relatorios_desejados" value="produtos_vendidos">
+                        <label for="relatorio_produtos">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-star"></i>&nbsp;&nbsp;Produtos mais vendidos
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="relatorio_ticket" name="relatorios_desejados" value="ticket_medio">
+                        <label for="relatorio_ticket">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Ticket médio por cliente
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="relatorio_estoque" name="relatorios_desejados" value="controle_estoque">
+                        <label for="relatorio_estoque">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-boxes"></i>&nbsp;&nbsp;Controle de estoque/ingredientes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="relatorio_desperdicio" name="relatorios_desejados" value="desperdicio">
+                        <label for="relatorio_desperdicio">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Controle de desperdício
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="relatorio_entregas" name="relatorios_desejados" value="tempo_entrega">
+                        <label for="relatorio_entregas">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Tempo médio de entrega
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="relatorio_financeiro" name="relatorios_desejados" value="fluxo_caixa">
+                        <label for="relatorio_financeiro">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-calculator"></i>&nbsp;&nbsp;Fluxo de caixa detalhado
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step5">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step5" name="observacao_relatorios" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Pergunta 6: Integrações -->
+            <div class="question" data-step="6">
+                <h3>
+                    <div class="question-icon">🔗</div>
+                    Quais integrações seriam importantes para você?
+                </h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="int_whatsapp" name="integracoes" value="whatsapp_automatico">
+                        <label for="int_whatsapp">
+                            <div class="custom-checkbox"></div>
+                            <i class="fab fa-whatsapp"></i>&nbsp;&nbsp;WhatsApp automático (pedidos e status)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="int_ifood" name="integracoes" value="ifood_automatico">
+                        <label for="int_ifood">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-utensils"></i>&nbsp;&nbsp;iFood automático
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="int_pagamento" name="integracoes" value="pagamentos">
+                        <label for="int_pagamento">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-credit-card"></i>&nbsp;&nbsp;Pagamentos (Pix, cartão, etc)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="int_fiscal" name="integracoes" value="nota_fiscal">
+                        <label for="int_fiscal">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-file-invoice"></i>&nbsp;&nbsp;Emissão de nota fiscal
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="int_impressora" name="integracoes" value="impressora">
+                        <label for="int_impressora">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-print"></i>&nbsp;&nbsp;Impressora térmica
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="int_maps" name="integracoes" value="google_maps">
+                        <label for="int_maps">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-map"></i>&nbsp;&nbsp;Google Maps (rota de entrega)
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step6">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step6" name="observacao_integracoes" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Pergunta 7: Funcionalidades Especiais -->
+            <div class="question" data-step="7">
+                <h3>
+                    <div class="question-icon">⭐</div>
+                    Quais funcionalidades especiais você gostaria de ter?
+                </h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="func_fidelidade" name="funcionalidades" value="programa_fidelidade">
+                        <label for="func_fidelidade">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-heart"></i>&nbsp;&nbsp;Programa de fidelidade
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="func_promocoes" name="funcionalidades" value="promocoes_automaticas">
+                        <label for="func_promocoes">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-percentage"></i>&nbsp;&nbsp;Promoções automáticas
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="func_cardapio" name="funcionalidades" value="cardapio_digital">
+                        <label for="func_cardapio">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Cardápio digital (QR Code)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="func_agendamento" name="funcionalidades" value="pedidos_agendados">
+                        <label for="func_agendamento">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-calendar-check"></i>&nbsp;&nbsp;Pedidos agendados
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="func_feedback" name="funcionalidades" value="avaliacao_cliente">
+                        <label for="func_feedback">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;Avaliação dos clientes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="func_app_entregador" name="funcionalidades" value="app_entregador">
+                        <label for="func_app_entregador">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-mobile"></i>&nbsp;&nbsp;App para o entregador
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="func_painel_tv" name="funcionalidades" value="painel_cozinha_tv">
+                        <label for="func_painel_tv">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-tv"></i>&nbsp;&nbsp;Painel da cozinha na TV
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step7">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step7" name="observacao_funcionalidades" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Pergunta 8: Prioridades -->
+            <div class="question" data-step="8">
+                <h3>
+                    <div class="question-icon">🎯</div>
+                    Se pudesse escolher, quais são os 3 problemas mais urgentes para resolver?
+                </h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 20px; font-size: 0.9em;">
+                    <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Selecione até 3 opções por ordem de prioridade
+                </p>
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="prio_pedidos" name="prioridades" value="organizacao_pedidos">
+                        <label for="prio_pedidos">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;Organização dos pedidos (WhatsApp, balcão, iFood)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="prio_cozinha" name="prioridades" value="agilidade_cozinha">
+                        <label for="prio_cozinha">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-fire"></i>&nbsp;&nbsp;Agilidade e organização na cozinha
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="prio_entregas" name="prioridades" value="controle_entregas">
+                        <label for="prio_entregas">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-shipping-fast"></i>&nbsp;&nbsp;Controle e rastreamento das entregas
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="prio_vendas" name="prioridades" value="relatorios_vendas">
+                        <label for="prio_vendas">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-chart-bar"></i>&nbsp;&nbsp;Relatórios de vendas e resultados
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="prio_estoque" name="prioridades" value="controle_estoque">
+                        <label for="prio_estoque">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-warehouse"></i>&nbsp;&nbsp;Controle de estoque e ingredientes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="prio_clientes" name="prioridades" value="fidelizacao_clientes">
+                        <label for="prio_clientes">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-users-cog"></i>&nbsp;&nbsp;Fidelização de clientes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="prio_financeiro" name="prioridades" value="controle_financeiro">
+                        <label for="prio_financeiro">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-money-bill-wave"></i>&nbsp;&nbsp;Controle financeiro detalhado
+                        </label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="prio_automatizacao" name="prioridades" value="automatizacao">
+                        <label for="prio_automatizacao">
+                            <div class="custom-checkbox"></div>
+                            <i class="fas fa-robot"></i>&nbsp;&nbsp;Automatização de processos
+                        </label>
+                    </div>
+                </div>
+                <div class="observation-field">
+                    <label for="obs_step8">
+                        <i class="fas fa-comment-dots"></i>&nbsp;&nbsp;Alguma observação adicional?
+                    </label>
+                    <textarea id="obs_step8" name="observacao_prioridades" placeholder="Digite aqui se houver algo mais a comentar..." rows="2"></textarea>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button type="button" class="btn btn-prev" id="prevBtn" onclick="previousStep()">
+                    <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Anterior
+                </button>
+                <button type="button" class="btn btn-next" id="nextBtn" onclick="nextStep()">
+                    Próximo&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+                </button>
+                <button type="button" class="btn btn-submit" id="submitBtn" onclick="submitForm()">
+                    Finalizar&nbsp;&nbsp;<i class="fas fa-check"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- Tela de Agradecimento -->
+        <div class="thank-you" id="thankYou">
+            <h2>🎉 Obrigado!</h2>
+            <p>Suas respostas foram registradas com sucesso!</p>
+            <p>Agora consigo criar uma proposta sob medida que vai transformar a operação da Lume Açaí 🚀</p>
+            <a href="#" id="whatsappBtn" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Conversar no WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
