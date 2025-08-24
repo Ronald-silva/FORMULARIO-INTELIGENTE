@@ -3,121 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste - Formulário</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background: #f0f0f0;
-        }
-        .test-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .btn {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn-prev { background: #ccc; }
-        .btn-next { background: #007bff; color: white; }
-        .btn-submit { background: #28a745; color: white; }
-        .step-info {
-            background: #e9ecef;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Teste - Tela de Agradecimento</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="test-container">
-        <h1>Teste do Formulário</h1>
-        
-        <div class="step-info">
-            <p>Etapa atual: <span id="currentStepDisplay">1</span> de 8</p>
-            <p>Progresso: <span id="progressDisplay">12.5%</span></p>
-        </div>
-        
-        <div class="navigation">
-            <button type="button" class="btn btn-prev" id="prevBtn" onclick="previousStep()">
-                ← Anterior
-            </button>
-            <button type="button" class="btn btn-next" id="nextBtn" onclick="nextStep()">
-                Próximo →
-            </button>
-            <button type="button" class="btn btn-submit" id="submitBtn" onclick="submitForm()" style="display: none;">
-                Finalizar ✓
-            </button>
-        </div>
-        
-        <div style="margin-top: 20px;">
-            <button onclick="testNavigation()">Testar Navegação</button>
-            <button onclick="goToStep(8)">Ir para Etapa 8</button>
+<body class="thank-you-mode">
+    <!-- Efeito de bolhas flutuantes -->
+    <div class="acai-bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container thank-you-container">
+        <!-- Tela de Agradecimento -->
+        <div class="thank-you active" id="thankYou">
+            <h2>🎉 Obrigado!</h2>
+            <p>Suas respostas foram registradas com sucesso!</p>
+            <p>Agora consigo criar uma proposta sob medida que vai transformar a operação da Lume Açaí 🚀</p>
+            <a href="#" id="whatsappBtn" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Conversar no WhatsApp
+            </a>
         </div>
     </div>
 
     <script>
-        let currentStep = 1;
-        const totalSteps = 8;
+        // Simular dados para teste
+        const numeroWhatsApp = '5585991993833';
+        const mensagem = '🫐 *DIAGNÓSTICO LUME AÇAÍ - JOÃO XXIII*\n🚀 *Sistema Personalizado - Análise Completa*\n\n📱 *CANAIS DE VENDA ATUAIS:*\n• 💬 WhatsApp\n• 🍴 iFood\n\n📝 *ORGANIZAÇÃO WHATSAPP ATUAL:*\n• 📖 Caderno/Anotações\n\n👩‍🍳 *PRINCIPAIS DESAFIOS NA COZINHA:*\n• 🛒 Falta de ingredientes\n\n🛵 *LOGÍSTICA DE ENTREGAS:*\n• ❌ Não faço entrega própria\n\n📊 *RELATÓRIOS E CONTROLES DESEJADOS:*\n• 🚀 Tempo médio de entrega\n\n🔗 *INTEGRAÇÕES IMPORTANTES:*\n• 🗺️ Google Maps (rota de entrega)\n\n⭐ *FUNCIONALIDADES ESPECIAIS:*\n• 📺 Painel da cozinha na TV\n\n🎯 *TOP 1 PRIORIDADES URGENTES:*\n1. 🏪 Controle de estoque e ingredientes\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🫐 *PRÓXIMOS PASSOS:*\n• Análise completa das necessidades ✅\n• Proposta de sistema sob medida\n• Solução que vai transformar a operação da Lume Açaí!\n\n*Vamos conversar sobre como posso ajudar você a revolucionar sua loja?* 🚀';
         
-        function updateDisplay() {
-            document.getElementById('currentStepDisplay').textContent = currentStep;
-            const progress = (currentStep / totalSteps) * 100;
-            document.getElementById('progressDisplay').textContent = progress.toFixed(1) + '%';
-            updateNavigation();
-        }
+        const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+        document.getElementById('whatsappBtn').href = linkWhatsApp;
         
-        function updateNavigation() {
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const submitBtn = document.getElementById('submitBtn');
-
-            prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+        // Função para ajustar posicionamento
+        function adjustThankYouPosition() {
+            const thankYouElement = document.getElementById('thankYou');
+            const container = document.querySelector('.container');
+            const body = document.body;
             
-            if (currentStep === totalSteps) {
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'block';
-            } else {
-                nextBtn.style.display = 'block';
-                submitBtn.style.display = 'none';
-            }
+            if (!thankYouElement || !container) return;
+            
+            // Aplicar classe ao body para centralização perfeita
+            body.classList.add('thank-you-mode');
+            
+            // Obter dimensões da viewport
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+            
+            console.log('Teste - Posicionamento da tela de agradecimento ajustado');
+            console.log('Viewport:', viewportWidth + 'x' + viewportHeight);
+            console.log('Container:', container.offsetWidth + 'x' + container.offsetHeight);
+            console.log('Thank You:', thankYouElement.offsetWidth + 'x' + thankYouElement.offsetHeight);
+            console.log('Body class aplicada:', body.classList.contains('thank-you-mode'));
         }
         
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                updateDisplay();
-            }
-        }
-        
-        function previousStep() {
-            if (currentStep > 1) {
-                currentStep--;
-                updateDisplay();
-            }
-        }
-        
-        function goToStep(step) {
-            currentStep = step;
-            updateDisplay();
-        }
-        
-        function submitForm() {
-            alert('Formulário enviado!');
-        }
-        
-        function testNavigation() {
-            alert('Testando navegação...\nEtapa atual: ' + currentStep + '\nBotão Anterior: ' + (currentStep > 1 ? 'Visível' : 'Oculto') + '\nBotão Próximo: ' + (currentStep < totalSteps ? 'Visível' : 'Oculto') + '\nBotão Finalizar: ' + (currentStep === totalSteps ? 'Visível' : 'Oculto'));
-        }
-        
-        // Inicializar
-        updateDisplay();
+        // Ajustar posicionamento ao carregar e redimensionar
+        document.addEventListener('DOMContentLoaded', adjustThankYouPosition);
+        window.addEventListener('resize', adjustThankYouPosition);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(adjustThankYouPosition, 100);
+        });
     </script>
 </body>
 </html>

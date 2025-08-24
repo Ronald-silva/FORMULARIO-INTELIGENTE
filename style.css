@@ -354,48 +354,132 @@
             transform: none;
         }
         
+        /* Tela de Agradecimento - Melhorias de Centralização e Responsividade */
         .thank-you {
             display: none;
             text-align: center;
             padding: 40px;
             color: white;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 10;
         }
-        
+
         .thank-you.active {
-            display: block;
-            animation: slideIn 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            animation: thankYouSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
+        @keyframes thankYouSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateY(20px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         .thank-you h2 {
-            font-size: 2.5em;
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 20px;
             color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
-        
+
         .thank-you p {
-            font-size: 1.2em;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .thank-you p:last-of-type {
+            margin-bottom: 40px;
+            font-weight: 500;
             opacity: 0.9;
         }
-        
+
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 20px 40px;
-            background: #25D366;
+            justify-content: center;
+            gap: 12px;
+            padding: clamp(16px, 4vw, 24px) clamp(24px, 6vw, 40px);
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
             text-decoration: none;
-            border-radius: 20px;
+            border-radius: clamp(16px, 4vw, 24px);
             font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+            max-width: 90%;
+            width: auto;
         }
-        
+
+        .whatsapp-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .whatsapp-btn:hover:before {
+            left: 100%;
+        }
+
         .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(135deg, #128C7E, #25D366);
+        }
+
+        .whatsapp-btn:active {
+            transform: translateY(-2px) scale(1.01);
+            transition: all 0.1s ease;
+        }
+
+        .whatsapp-btn i {
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        /* Container específico para tela de agradecimento */
+        .container.thank-you-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: clamp(20px, 5vw, 40px);
+            margin: 0 auto;
         }
         
         .step-counter {
@@ -527,6 +611,7 @@
             
             .thank-you {
                 padding: 25px 15px;
+                width: 100%;
             }
             
             .thank-you h2 {
@@ -541,10 +626,10 @@
             }
             
             .whatsapp-btn {
-                padding: 15px 25px;
+                padding: 15px 10px;
                 font-size: 1em;
                 border-radius: 15px;
-                width: 100%;
+                display: flex;
                 justify-content: center;
                 text-align: center;
             }
@@ -653,6 +738,10 @@
             .whatsapp-btn {
                 padding: 18px 35px;
                 font-size: 1.05em;
+                width: 100%;
+                display: flex;
+                text-align: center;
+                justify-content: center;
             }
         }
         
@@ -919,4 +1008,280 @@
         .observation-field textarea:hover {
             border-color: rgba(255, 255, 255, 0.5);
             background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Ajustes específicos para telas muito pequenas */
+        @media (max-width: 360px) {
+            .thank-you.active {
+                padding: 15px 10px;
+                min-height: 75vh;
+            }
+            
+            .thank-you h2 {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
+            }
+            
+            .thank-you p {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+                max-width: 98%;
+            }
+            
+            .whatsapp-btn {
+                padding: 14px 16px;
+                font-size: 0.9rem;
+                border-radius: 16px;
+                min-width: 160px;
+                max-width: 98%;
+            }
+        }
+
+        /* Ajustes para telas muito grandes */
+        @media (min-width: 1400px) {
+            .thank-you.active {
+                min-height: 45vh;
+                padding: 50px 40px;
+            }
+            
+            .thank-you h2 {
+                font-size: 3.5rem;
+                margin-bottom: 30px;
+            }
+            
+            .thank-you p {
+                font-size: 1.4rem;
+                margin-bottom: 40px;
+                max-width: 80%;
+            }
+            
+            .thank-you p:last-of-type {
+                margin-bottom: 50px;
+            }
+            
+            .whatsapp-btn {
+                padding: 28px 48px;
+                font-size: 1.3rem;
+                border-radius: 30px;
+                min-width: 300px;
+            }
+        }
+        
+        /* Melhorias para centralização perfeita da tela de agradecimento */
+        .container.thank-you-container {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 100vh !important;
+            padding: clamp(20px, 5vw, 40px) !important;
+            margin: 0 auto !important;
+            position: relative !important;
+            overflow: visible !important;
+        }
+        
+        /* Garantir que a tela de agradecimento ocupe o espaço disponível corretamente */
+        .thank-you.active {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            z-index: 10 !important;
+            flex: 1 !important;
+        }
+        
+        /* Ajustes para garantir que o body também centralize corretamente */
+        body.thank-you-mode {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 100vh !important;
+            min-height: calc(var(--vh, 1vh) * 100) !important;
+            padding: 10px !important;
+            margin: 0 !important;
+            overflow-x: hidden !important;
+        }
+        
+        /* Ajustes específicos para dispositivos com altura limitada */
+        @media (max-height: 600px) {
+            .container.thank-you-container {
+                min-height: 100vh !important;
+                padding: clamp(15px, 3vw, 25px) !important;
+            }
+            
+            .thank-you.active {
+                min-height: 80vh !important;
+                padding: clamp(15px, 3vw, 25px) !important;
+            }
+            
+            .thank-you h2 {
+                font-size: clamp(1.6rem, 4vw, 2.5rem) !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .thank-you p {
+                font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .thank-you p:last-of-type {
+                margin-bottom: 25px !important;
+            }
+            
+            .whatsapp-btn {
+                padding: clamp(12px, 3vw, 18px) clamp(20px, 4vw, 30px) !important;
+                font-size: clamp(0.9rem, 2.2vw, 1.1rem) !important;
+            }
+        }
+        
+        /* Ajustes para dispositivos com largura muito pequena */
+        @media (max-width: 320px) {
+            .thank-you.active {
+                padding: 12px 8px !important;
+                min-height: 80vh !important;
+            }
+            
+            .thank-you h2 {
+                font-size: 1.6rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .thank-you p {
+                font-size: 0.85rem !important;
+                margin-bottom: 18px !important;
+                max-width: 99% !important;
+            }
+            
+            .thank-you p:last-of-type {
+                margin-bottom: 22px !important;
+            }
+            
+            .whatsapp-btn {
+                padding: 12px 14px !important;
+                font-size: 0.85rem !important;
+                border-radius: 14px !important;
+                min-width: 140px !important;
+                max-width: 99% !important;
+            }
+        }
+        
+        /* Ajustes para dispositivos com largura muito grande */
+        @media (min-width: 1600px) {
+            .thank-you.active {
+                min-height: 40vh !important;
+                padding: 60px 50px !important;
+            }
+            
+            .thank-you h2 {
+                font-size: 4rem !important;
+                margin-bottom: 35px !important;
+            }
+            
+            .thank-you p {
+                font-size: 1.5rem !important;
+                margin-bottom: 45px !important;
+                max-width: 75% !important;
+            }
+            
+            .thank-you p:last-of-type {
+                margin-bottom: 60px !important;
+            }
+            
+            .whatsapp-btn {
+                padding: 32px 56px !important;
+                font-size: 1.4rem !important;
+                border-radius: 32px !important;
+                min-width: 350px !important;
+            }
+        }
+        
+        /* Ajustes para orientação portrait em dispositivos móveis */
+        @media (max-width: 768px) and (orientation: portrait) {
+            .container.thank-you-container {
+                min-height: 100vh !important;
+                padding: clamp(20px, 6vw, 30px) !important;
+            }
+            
+            .thank-you.active {
+                min-height: 70vh !important;
+                padding: clamp(20px, 6vw, 30px) !important;
+            }
+        }
+        
+        /* Ajustes para orientação landscape em dispositivos móveis */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .container.thank-you-container {
+                min-height: 100vh !important;
+                padding: clamp(15px, 4vw, 25px) !important;
+            }
+            
+            .thank-you.active {
+                min-height: 80vh !important;
+                padding: clamp(15px, 4vw, 25px) !important;
+            }
+        }
+        
+        /* Ajustes para dispositivos com viewport muito pequeno */
+        @media (max-width: 280px) {
+            .thank-you.active {
+                padding: 10px 6px !important;
+                min-height: 85vh !important;
+            }
+            
+            .thank-you h2 {
+                font-size: 1.4rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .thank-you p {
+                font-size: 0.8rem !important;
+                margin-bottom: 16px !important;
+                max-width: 100% !important;
+            }
+            
+            .thank-you p:last-of-type {
+                margin-bottom: 20px !important;
+            }
+            
+            .whatsapp-btn {
+                padding: 10px 12px !important;
+                font-size: 0.8rem !important;
+                border-radius: 12px !important;
+                min-width: 120px !important;
+                max-width: 100% !important;
+            }
+        }
+        
+        /* Ajustes para dispositivos com viewport muito grande */
+        @media (min-width: 2000px) {
+            .thank-you.active {
+                min-height: 35vh !important;
+                padding: 80px 60px !important;
+            }
+            
+            .thank-you h2 {
+                font-size: 5rem !important;
+                margin-bottom: 40px !important;
+            }
+            
+            .thank-you p {
+                font-size: 1.8rem !important;
+                margin-bottom: 50px !important;
+                max-width: 70% !important;
+            }
+            
+            .thank-you p:last-of-type {
+                margin-bottom: 70px !important;
+            }
+            
+            .whatsapp-btn {
+                padding: 40px 70px !important;
+                font-size: 1.6rem !important;
+                border-radius: 40px !important;
+                min-width: 400px !important;
+            }
         }

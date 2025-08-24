@@ -287,22 +287,120 @@
                 const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
                 document.getElementById('whatsappBtn').href = linkWhatsApp;
                 
-                // Esconder formulário e mostrar agradecimento
+                // Esconder formulário e elementos relacionados
                 document.getElementById('diagnosticForm').style.display = 'none';
                 document.querySelector('.header').style.display = 'none';
                 document.querySelector('.progress-container').style.display = 'none';
                 document.querySelector('.step-counter').style.display = 'none';
                 document.querySelector('.navigation').style.display = 'none';
-                document.getElementById('thankYou').classList.add('active');
+                
+                // Aplicar classe especial ao container para centralização perfeita
+                const container = document.querySelector('.container');
+                container.classList.add('thank-you-container');
+                
+                // Mostrar tela de agradecimento com animação
+                const thankYouElement = document.getElementById('thankYou');
+                thankYouElement.classList.add('active');
+                
+                // Ajustar posicionamento para diferentes tamanhos de tela
+                adjustThankYouPosition();
+                
+                // Scroll suave para o topo da tela de agradecimento
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }, 100);
                 
                 console.log('Formulário enviado - mostrando agradecimento');
                 
                 // Log dos dados para debug
                 console.log('Dados coletados:', formData);
                 console.log('Mensagem WhatsApp:', mensagem);
+                
+                // Adicionar listener para redimensionamento da janela
+                window.addEventListener('resize', adjustThankYouPosition);
             } else {
                 console.log('Validação falhou - não enviando formulário');
             }
+        }
+
+        // Função para ajustar posicionamento da tela de agradecimento
+        function adjustThankYouPosition() {
+            const thankYouElement = document.getElementById('thankYou');
+            const container = document.querySelector('.container');
+            const body = document.body;
+            
+            if (!thankYouElement || !container) return;
+            
+            // Aplicar classe ao body para centralização perfeita
+            body.classList.add('thank-you-mode');
+            
+            // Obter dimensões da viewport
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+            
+            // Ajustar altura mínima baseada no tamanho da tela
+            if (viewportWidth <= 576) {
+                // Mobile portrait
+                thankYouElement.style.minHeight = '70vh';
+                container.style.minHeight = '100vh';
+            } else if (viewportWidth <= 768) {
+                // Mobile landscape / tablet pequeno
+                thankYouElement.style.minHeight = '65vh';
+                container.style.minHeight = '100vh';
+            } else if (viewportWidth <= 992) {
+                // Tablet
+                thankYouElement.style.minHeight = '60vh';
+                container.style.minHeight = '90vh';
+            } else if (viewportWidth <= 1200) {
+                // Desktop pequeno
+                thankYouElement.style.minHeight = '55vh';
+                container.style.minHeight = '85vh';
+            } else {
+                // Desktop grande
+                thankYouElement.style.minHeight = '50vh';
+                container.style.minHeight = '80vh';
+            }
+            
+            // Ajustar padding baseado no tamanho da tela
+            if (viewportWidth <= 360) {
+                thankYouElement.style.padding = '15px 10px';
+            } else if (viewportWidth <= 576) {
+                thankYouElement.style.padding = '20px 15px';
+            } else if (viewportWidth <= 768) {
+                thankYouElement.style.padding = '30px 20px';
+            } else if (viewportWidth <= 992) {
+                thankYouElement.style.padding = '35px 25px';
+            } else if (viewportWidth <= 1200) {
+                thankYouElement.style.padding = '40px 30px';
+            } else {
+                thankYouElement.style.padding = '45px 35px';
+            }
+            
+            // Centralizar verticalmente se necessário
+            const containerHeight = container.offsetHeight;
+            const thankYouHeight = thankYouElement.offsetHeight;
+            
+            if (containerHeight > viewportHeight) {
+                container.style.display = 'flex';
+                container.style.alignItems = 'center';
+                container.style.justifyContent = 'center';
+            }
+            
+            // Ajustar posicionamento baseado na altura da viewport
+            if (viewportHeight <= 600) {
+                // Dispositivos com altura limitada
+                thankYouElement.style.minHeight = '80vh';
+                container.style.minHeight = '100vh';
+            }
+            
+            console.log('Posicionamento da tela de agradecimento ajustado');
+            console.log('Viewport:', viewportWidth + 'x' + viewportHeight);
+            console.log('Container:', container.offsetWidth + 'x' + containerHeight);
+            console.log('Thank You:', thankYouElement.offsetWidth + 'x' + thankYouHeight);
+            console.log('Body class aplicada:', body.classList.contains('thank-you-mode'));
         }
 
         function gerarMensagemWhatsApp(dados) {
