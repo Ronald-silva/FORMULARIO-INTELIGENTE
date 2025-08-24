@@ -7,6 +7,9 @@
             console.log('DOM carregado - iniciando formulário');
             console.log('currentStep:', currentStep, 'totalSteps:', totalSteps);
             
+            // Garantir que estamos na primeira etapa
+            currentStep = 1;
+            
             showQuestion(1); // Garantir que a primeira pergunta seja exibida
             console.log('Primeira pergunta exibida');
             
@@ -111,14 +114,17 @@
                 return;
             }
 
+            // Botão Anterior - sempre visível exceto na primeira etapa
             prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
             
+            // Botão Próximo e Finalizar - lógica baseada na etapa atual
             if (currentStep === totalSteps) {
+                // Última etapa (8): esconder Próximo, mostrar Finalizar
                 nextBtn.style.display = 'none';
                 submitBtn.style.display = 'block';
                 console.log('Última etapa - mostrando botão Finalizar');
-                console.log('Botão Finalizar display:', submitBtn.style.display);
             } else {
+                // Etapas 1-7: mostrar Próximo, esconder Finalizar
                 nextBtn.style.display = 'block';
                 submitBtn.style.display = 'none';
                 console.log('Não é última etapa - mostrando botão Próximo');
@@ -585,230 +591,4 @@
                 console.log('Tecla Enter - enviando formulário');
                 submitForm();
             }
-        });
-        
-        // Função de teste para verificar os botões na 8ª etapa
-        function testeBotaoEtapa8() {
-            console.log('=== TESTE BOTÃO ETAPA 8 ===');
-            console.log('currentStep atual:', currentStep);
-            console.log('totalSteps:', totalSteps);
-            
-            // Verificar se os botões existem
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            console.log('Botões encontrados:');
-            console.log('- prevBtn:', prevBtn ? 'SIM' : 'NÃO');
-            console.log('- nextBtn:', nextBtn ? 'SIM' : 'NÃO');
-            console.log('- submitBtn:', submitBtn ? 'SIM' : 'NÃO');
-            
-            if (prevBtn && nextBtn && submitBtn) {
-                // Verificar estado inicial dos botões
-                console.log('Estado INICIAL dos botões:');
-                console.log('- prevBtn display:', prevBtn.style.display);
-                console.log('- nextBtn display:', nextBtn.style.display);
-                console.log('- submitBtn display:', submitBtn.style.display);
-                
-                // Forçar para etapa 8
-                currentStep = 8;
-                console.log('currentStep forçado para:', currentStep);
-                
-                // Atualizar navegação
-                updateNavigation();
-                
-                // Verificar estado dos botões após updateNavigation
-                console.log('Estado dos botões APÓS updateNavigation:');
-                console.log('- prevBtn display:', prevBtn.style.display);
-                console.log('- nextBtn display:', nextBtn.style.display);
-                console.log('- submitBtn display:', submitBtn.style.display);
-                
-                // Mostrar pergunta da etapa 8
-                showQuestion(8);
-                updateProgress();
-                updateStepCounter();
-                
-                // Verificar estado final dos botões
-                console.log('Estado FINAL dos botões:');
-                console.log('- prevBtn display:', prevBtn.style.display);
-                console.log('- nextBtn display:', nextBtn.style.display);
-                console.log('- submitBtn display:', submitBtn.style.display);
-                
-                // Verificar se há CSS interferindo
-                const computedStyle = window.getComputedStyle(submitBtn);
-                console.log('CSS computado do submitBtn:');
-                console.log('- display:', computedStyle.display);
-                console.log('- visibility:', computedStyle.visibility);
-                console.log('- opacity:', computedStyle.opacity);
-                
-                // FORÇAR exibição dos botões para teste
-                console.log('=== FORÇANDO EXIBIÇÃO DOS BOTÕES ===');
-                prevBtn.style.display = 'block';
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'block';
-                
-                console.log('Estado APÓS forçar exibição:');
-                console.log('- prevBtn display:', prevBtn.style.display);
-                console.log('- nextBtn display:', nextBtn.style.display);
-                console.log('- submitBtn display:', submitBtn.style.display);
-                
-            } else {
-                console.error('Alguns botões não foram encontrados!');
-            }
-            
-            console.log('=== FIM DO TESTE ===');
-        }
-        
-        // Função de teste mais simples - apenas forçar exibição
-        function testeSimples() {
-            console.log('=== TESTE SIMPLES ===');
-            
-            const prevBtn = document.getElementById('prevBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            if (prevBtn && submitBtn) {
-                console.log('Forçando exibição dos botões...');
-                prevBtn.style.display = 'block';
-                submitBtn.style.display = 'block';
-                
-                console.log('Botões forçados para exibir!');
-                console.log('- prevBtn display:', prevBtn.style.display);
-                console.log('- submitBtn display:', submitBtn.style.display);
-            } else {
-                console.error('Botões não encontrados!');
-            }
-        }
-        
-        // Função de teste para verificar posição e visibilidade
-        function testePosicao() {
-            console.log('=== TESTE POSIÇÃO ===');
-            
-            const prevBtn = document.getElementById('prevBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            const navigation = document.querySelector('.navigation');
-            
-            if (prevBtn && submitBtn && navigation) {
-                console.log('Elementos encontrados!');
-                
-                // Verificar posição da navegação
-                const navRect = navigation.getBoundingClientRect();
-                console.log('Posição da navegação:');
-                console.log('- top:', navRect.top);
-                console.log('- left:', navRect.left);
-                console.log('- width:', navRect.width);
-                console.log('- height:', navRect.height);
-                console.log('- visible:', navRect.top < window.innerHeight && navRect.bottom > 0);
-                
-                // Verificar posição dos botões
-                const prevRect = prevBtn.getBoundingClientRect();
-                const submitRect = submitBtn.getBoundingClientRect();
-                
-                console.log('Posição do botão Anterior:');
-                console.log('- top:', prevRect.top);
-                console.log('- left:', prevRect.left);
-                console.log('- visible:', prevRect.top < window.innerHeight && prevRect.bottom > 0);
-                
-                console.log('Posição do botão Finalizar:');
-                console.log('- top:', submitRect.top);
-                console.log('- left:', submitRect.left);
-                console.log('- visible:', submitRect.top < window.innerHeight && submitRect.bottom > 0);
-                
-                // Verificar se estão dentro da viewport
-                const isInViewport = (element) => {
-                    const rect = element.getBoundingClientRect();
-                    return (
-                        rect.top >= 0 &&
-                        rect.left >= 0 &&
-                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                    );
-                };
-                
-                console.log('Dentro da viewport:');
-                console.log('- Navegação:', isInViewport(navigation));
-                console.log('- Botão Anterior:', isInViewport(prevBtn));
-                console.log('- Botão Finalizar:', isInViewport(submitBtn));
-                
-                // Forçar exibição e verificar novamente
-                prevBtn.style.display = 'block';
-                submitBtn.style.display = 'block';
-                
-                console.log('=== APÓS FORÇAR EXIBIÇÃO ===');
-                const newPrevRect = prevBtn.getBoundingClientRect();
-                const newSubmitRect = submitBtn.getBoundingClientRect();
-                
-                console.log('Nova posição do botão Anterior:');
-                console.log('- top:', newPrevRect.top);
-                console.log('- visible:', newPrevRect.top < window.innerHeight && newPrevRect.bottom > 0);
-                
-                console.log('Nova posição do botão Finalizar:');
-                console.log('- top:', newSubmitRect.top);
-                console.log('- visible:', newSubmitRect.top < window.innerHeight && newSubmitRect.bottom > 0);
-                
-            } else {
-                console.error('Elementos não encontrados!');
-                console.log('- prevBtn:', prevBtn ? 'SIM' : 'NÃO');
-                console.log('- submitBtn:', submitBtn ? 'SIM' : 'NÃO');
-                console.log('- navigation:', navigation ? 'SIM' : 'NÃO');
-            }
-        }
-        
-        // Adicionar botão de teste temporariamente
-        document.addEventListener('DOMContentLoaded', function() {
-            // Criar botão de teste
-            const testBtn = document.createElement('button');
-            testBtn.textContent = '🔍 Testar Etapa 8';
-            testBtn.style.cssText = `
-                position: fixed;
-                top: 10px;
-                left: 10px;
-                z-index: 9999;
-                padding: 10px;
-                background: #ff6b6b;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 12px;
-            `;
-            testBtn.onclick = testeBotaoEtapa8;
-            document.body.appendChild(testBtn);
-            
-            // Criar segundo botão de teste
-            const testBtn2 = document.createElement('button');
-            testBtn2.textContent = '⚡ Teste Simples';
-            testBtn2.style.cssText = `
-                position: fixed;
-                top: 50px;
-                left: 10px;
-                z-index: 9999;
-                padding: 10px;
-                background: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 12px;
-            `;
-            testBtn2.onclick = testeSimples;
-            document.body.appendChild(testBtn2);
-            
-            // Criar terceiro botão de teste
-            const testBtn3 = document.createElement('button');
-            testBtn3.textContent = '📍 Teste Posição';
-            testBtn3.style.cssText = `
-                position: fixed;
-                top: 90px;
-                left: 10px;
-                z-index: 9999;
-                padding: 10px;
-                background: #2196F3;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 12px;
-            `;
-            testBtn3.onclick = testePosicao;
-            document.body.appendChild(testBtn3);
         });
